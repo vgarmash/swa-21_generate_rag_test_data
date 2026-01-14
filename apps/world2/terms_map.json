@@ -1,0 +1,45 @@
+{
+  "metadata": {
+    "original_universe": "Asterix and Obelix (French comic series)",
+    "fictional_universe": "The Chronicles of Veridonia",
+    "creation_date": "2024",
+    "purpose": "RAG testing - avoid model memory contamination",
+    "description": "All recognizable names and terms from Asterix have been replaced with fictional ones while preserving narrative structure, character relationships, and plot dynamics. The world maintains the same comic adventure tone but with completely original terminology."
+  },
+  "mapping_strategy": {
+    "character_names": "Celtic/Latin-inspired constructions with thematic consistency",
+    "place_names": "Descriptive English compounds reflecting location characteristics",
+    "magic_items": "Fantasy adjective-noun combinations",
+    "events": "Dramatic historical-sounding titles",
+    "common_terms": "Thematic replacements maintaining semantic function"
+  },
+  "term_mappings": {
+    "Asterix": "Veridix",
+    "Obelix": "Megalix",
+    "Getafix": "Alchemix",
+    "Vitalstatistix": "Chief Stentorix",
+    "Cacofonix": "Melodix",
+    "Magic Potion": "Sunstone Elixir",
+    "Golden Sickle": "Silver Crescent",
+    "Menhir": "Standing Stone",
+    "Wild Boar": "Forest Stag",
+    "Gaul": "Veridonia",
+    "Rome": "The Imperium",
+    "mistletoe": "Moonleaf",
+    "druid": "Lorekeeper",
+    "bard": "Minstrel",
+    "centurion": "Legate",
+    "feast": "Gathering",
+    "Armorican Village": "Oakhaven",
+    "Babaorum": "Fort Argentum",
+    "Laudanum": "Fort Ferrum",
+    "Lutetia": "Silverport"
+  },
+  "structural_notes": {
+    "hero_sidekick_dynamic": "Preserved (Veridix and Megalix)",
+    "wise_elder": "Preserved (Alchemix replaces Getafix)",
+    "comic_relief": "Preserved (Melodix as terrible minstrel)",
+    "villain_emperor": "Preserved (Imperial Emperor)",
+    "recurring_gags": "Adapted with fictional terms (boar→stag, potion→elixir)"
+  }
+}
