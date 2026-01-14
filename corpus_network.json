@@ -1,0 +1,255 @@
+{
+  "nodes": [
+    {
+      "id": "DECR_DECR_001",
+      "type": "DECR",
+      "group": 3
+    },
+    {
+      "id": "DECR_DECR_002",
+      "type": "DECR",
+      "group": 3
+    },
+    {
+      "id": "DECR_DECR_003",
+      "type": "DECR",
+      "group": 3
+    },
+    {
+      "id": "DECR_DECR_004",
+      "type": "DECR",
+      "group": 3
+    },
+    {
+      "id": "DECR_DECR_005",
+      "type": "DECR",
+      "group": 3
+    },
+    {
+      "id": "ENCY_ENCY_001",
+      "type": "ENCY",
+      "group": 1
+    },
+    {
+      "id": "ENCY_ENCY_002",
+      "type": "ENCY",
+      "group": 1
+    },
+    {
+      "id": "ENCY_ENCY_003",
+      "type": "ENCY",
+      "group": 1
+    },
+    {
+      "id": "ENCY_ENCY_004",
+      "type": "ENCY",
+      "group": 1
+    },
+    {
+      "id": "ENCY_ENCY_005",
+      "type": "ENCY",
+      "group": 1
+    },
+    {
+      "id": "ENCY_ENCY_006",
+      "type": "ENCY",
+      "group": 1
+    },
+    {
+      "id": "ENCY_ENCY_007",
+      "type": "ENCY",
+      "group": 1
+    },
+    {
+      "id": "ENCY_ENCY_008",
+      "type": "ENCY",
+      "group": 1
+    },
+    {
+      "id": "ENCY_ENCY_009",
+      "type": "ENCY",
+      "group": 1
+    },
+    {
+      "id": "ENCY_ENCY_010",
+      "type": "ENCY",
+      "group": 1
+    },
+    {
+      "id": "ENCY_ENCY_011",
+      "type": "ENCY",
+      "group": 1
+    },
+    {
+      "id": "ENCY_ENCY_012",
+      "type": "ENCY",
+      "group": 1
+    },
+    {
+      "id": "ENCY_ENCY_013",
+      "type": "ENCY",
+      "group": 1
+    },
+    {
+      "id": "ENCY_ENCY_014",
+      "type": "ENCY",
+      "group": 1
+    },
+    {
+      "id": "ENCY_ENCY_015",
+      "type": "ENCY",
+      "group": 1
+    },
+    {
+      "id": "JOUR_JOURN_001",
+      "type": "JOUR",
+      "group": 2
+    },
+    {
+      "id": "JOUR_JOURN_002",
+      "type": "JOUR",
+      "group": 2
+    },
+    {
+      "id": "JOUR_JOURN_003",
+      "type": "JOUR",
+      "group": 2
+    },
+    {
+      "id": "JOUR_JOURN_004",
+      "type": "JOUR",
+      "group": 2
+    },
+    {
+      "id": "JOUR_JOURN_005",
+      "type": "JOUR",
+      "group": 2
+    },
+    {
+      "id": "JOUR_JOURN_006",
+      "type": "JOUR",
+      "group": 2
+    },
+    {
+      "id": "JOUR_JOURN_007",
+      "type": "JOUR",
+      "group": 2
+    },
+    {
+      "id": "JOUR_JOURN_008",
+      "type": "JOUR",
+      "group": 2
+    },
+    {
+      "id": "JOUR_JOURN_009",
+      "type": "JOUR",
+      "group": 2
+    },
+    {
+      "id": "JOUR_JOURN_010",
+      "type": "JOUR",
+      "group": 2
+    },
+    {
+      "id": "LETT_LETTER_001",
+      "type": "LETT",
+      "group": 3
+    },
+    {
+      "id": "LETT_LETTER_002",
+      "type": "LETT",
+      "group": 3
+    },
+    {
+      "id": "LETT_LETTER_003",
+      "type": "LETT",
+      "group": 3
+    },
+    {
+      "id": "LETT_LETTER_004",
+      "type": "LETT",
+      "group": 3
+    },
+    {
+      "id": "LETT_LETTER_005",
+      "type": "LETT",
+      "group": 3
+    },
+    {
+      "id": "MYTH_MYTH_001",
+      "type": "MYTH",
+      "group": 3
+    },
+    {
+      "id": "MYTH_MYTH_002",
+      "type": "MYTH",
+      "group": 3
+    },
+    {
+      "id": "MYTH_MYTH_003",
+      "type": "MYTH",
+      "group": 3
+    },
+    {
+      "id": "MYTH_MYTH_004",
+      "type": "MYTH",
+      "group": 3
+    },
+    {
+      "id": "MYTH_MYTH_005",
+      "type": "MYTH",
+      "group": 3
+    },
+    {
+      "id": "REPO_REP_001",
+      "type": "REPO",
+      "group": 3
+    },
+    {
+      "id": "REPO_REP_002",
+      "type": "REPO",
+      "group": 3
+    },
+    {
+      "id": "REPO_REP_003",
+      "type": "REPO",
+      "group": 3
+    },
+    {
+      "id": "REPO_REP_004",
+      "type": "REPO",
+      "group": 3
+    },
+    {
+      "id": "REPO_REP_005",
+      "type": "REPO",
+      "group": 3
+    },
+    {
+      "id": "REPO_REP_006",
+      "type": "REPO",
+      "group": 3
+    },
+    {
+      "id": "REPO_REP_007",
+      "type": "REPO",
+      "group": 3
+    },
+    {
+      "id": "REPO_REP_008",
+      "type": "REPO",
+      "group": 3
+    },
+    {
+      "id": "REPO_REP_009",
+      "type": "REPO",
+      "group": 3
+    },
+    {
+      "id": "REPO_REP_010",
+      "type": "REPO",
+      "group": 3
+    }
+  ],
+  "links": []
+}

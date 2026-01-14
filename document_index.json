@@ -1,0 +1,302 @@
+[
+  {
+    "id": "ENCY_ENCY_001",
+    "type": "encyclopedia",
+    "title": "Encyclopedia: Druidic Practices",
+    "author": "Gallic Scholars Collective"
+  },
+  {
+    "id": "ENCY_ENCY_002",
+    "type": "encyclopedia",
+    "title": "Encyclopedia: Druidic Practices",
+    "author": "Gallic Scholars Collective"
+  },
+  {
+    "id": "ENCY_ENCY_003",
+    "type": "encyclopedia",
+    "title": "Encyclopedia: Gallic Village Structure",
+    "author": "Gallic Scholars Collective"
+  },
+  {
+    "id": "ENCY_ENCY_004",
+    "type": "encyclopedia",
+    "title": "Encyclopedia: Roman Military Tactics",
+    "author": "Gallic Scholars Collective"
+  },
+  {
+    "id": "ENCY_ENCY_005",
+    "type": "encyclopedia",
+    "title": "Encyclopedia: Druidic Practices",
+    "author": "Gallic Scholars Collective"
+  },
+  {
+    "id": "ENCY_ENCY_006",
+    "type": "encyclopedia",
+    "title": "Encyclopedia: Roman Military Tactics",
+    "author": "Gallic Scholars Collective"
+  },
+  {
+    "id": "ENCY_ENCY_007",
+    "type": "encyclopedia",
+    "title": "Encyclopedia: Magic Potion Properties",
+    "author": "Gallic Scholars Collective"
+  },
+  {
+    "id": "ENCY_ENCY_008",
+    "type": "encyclopedia",
+    "title": "Encyclopedia: Gallic Village Structure",
+    "author": "Gallic Scholars Collective"
+  },
+  {
+    "id": "ENCY_ENCY_009",
+    "type": "encyclopedia",
+    "title": "Encyclopedia: Magic Potion Properties",
+    "author": "Gallic Scholars Collective"
+  },
+  {
+    "id": "ENCY_ENCY_010",
+    "type": "encyclopedia",
+    "title": "Encyclopedia: Menhir Types and Uses",
+    "author": "Gallic Scholars Collective"
+  },
+  {
+    "id": "ENCY_ENCY_011",
+    "type": "encyclopedia",
+    "title": "Encyclopedia: Gallic Village Structure",
+    "author": "Gallic Scholars Collective"
+  },
+  {
+    "id": "ENCY_ENCY_012",
+    "type": "encyclopedia",
+    "title": "Encyclopedia: Druidic Practices",
+    "author": "Gallic Scholars Collective"
+  },
+  {
+    "id": "ENCY_ENCY_013",
+    "type": "encyclopedia",
+    "title": "Encyclopedia: Roman Military Tactics",
+    "author": "Gallic Scholars Collective"
+  },
+  {
+    "id": "ENCY_ENCY_014",
+    "type": "encyclopedia",
+    "title": "Encyclopedia: Magic Potion Properties",
+    "author": "Gallic Scholars Collective"
+  },
+  {
+    "id": "ENCY_ENCY_015",
+    "type": "encyclopedia",
+    "title": "Encyclopedia: Druidic Practices",
+    "author": "Gallic Scholars Collective"
+  },
+  {
+    "id": "JOUR_JOURN_001",
+    "type": "journal",
+    "title": "Journal of Obelix",
+    "author": "Obelix"
+  },
+  {
+    "id": "JOUR_JOURN_002",
+    "type": "journal",
+    "title": "Journal of Getafix",
+    "author": "Getafix"
+  },
+  {
+    "id": "JOUR_JOURN_003",
+    "type": "journal",
+    "title": "Journal of Village_Elder",
+    "author": "Village_Elder"
+  },
+  {
+    "id": "JOUR_JOURN_004",
+    "type": "journal",
+    "title": "Journal of Obelix",
+    "author": "Obelix"
+  },
+  {
+    "id": "JOUR_JOURN_005",
+    "type": "journal",
+    "title": "Journal of Getafix",
+    "author": "Getafix"
+  },
+  {
+    "id": "JOUR_JOURN_006",
+    "type": "journal",
+    "title": "Journal of Obelix",
+    "author": "Obelix"
+  },
+  {
+    "id": "JOUR_JOURN_007",
+    "type": "journal",
+    "title": "Journal of Village_Elder",
+    "author": "Village_Elder"
+  },
+  {
+    "id": "JOUR_JOURN_008",
+    "type": "journal",
+    "title": "Journal of Getafix",
+    "author": "Getafix"
+  },
+  {
+    "id": "JOUR_JOURN_009",
+    "type": "journal",
+    "title": "Journal of Asterix",
+    "author": "Asterix"
+  },
+  {
+    "id": "JOUR_JOURN_010",
+    "type": "journal",
+    "title": "Journal of Asterix",
+    "author": "Asterix"
+  },
+  {
+    "id": "REPO_REP_001",
+    "type": "report",
+    "title": "Military/Scientific Report",
+    "author": "Gallic Scout"
+  },
+  {
+    "id": "REPO_REP_002",
+    "type": "report",
+    "title": "Military/Scientific Report",
+    "author": "Roman Centurion"
+  },
+  {
+    "id": "REPO_REP_003",
+    "type": "report",
+    "title": "Military/Scientific Report",
+    "author": "Roman Centurion"
+  },
+  {
+    "id": "REPO_REP_004",
+    "type": "report",
+    "title": "Military/Scientific Report",
+    "author": "Druid Observer"
+  },
+  {
+    "id": "REPO_REP_005",
+    "type": "report",
+    "title": "Military/Scientific Report",
+    "author": "Merchant Informant"
+  },
+  {
+    "id": "REPO_REP_006",
+    "type": "report",
+    "title": "Military/Scientific Report",
+    "author": "Merchant Informant"
+  },
+  {
+    "id": "REPO_REP_007",
+    "type": "report",
+    "title": "Military/Scientific Report",
+    "author": "Gallic Scout"
+  },
+  {
+    "id": "REPO_REP_008",
+    "type": "report",
+    "title": "Military/Scientific Report",
+    "author": "Merchant Informant"
+  },
+  {
+    "id": "REPO_REP_009",
+    "type": "report",
+    "title": "Military/Scientific Report",
+    "author": "Gallic Scout"
+  },
+  {
+    "id": "REPO_REP_010",
+    "type": "report",
+    "title": "Military/Scientific Report",
+    "author": "Druid Observer"
+  },
+  {
+    "id": "DECR_DECR_001",
+    "type": "decree",
+    "title": "Official Decree",
+    "author": "Unknown"
+  },
+  {
+    "id": "DECR_DECR_002",
+    "type": "decree",
+    "title": "Official Decree",
+    "author": "Unknown"
+  },
+  {
+    "id": "DECR_DECR_003",
+    "type": "decree",
+    "title": "Official Decree",
+    "author": "Unknown"
+  },
+  {
+    "id": "DECR_DECR_004",
+    "type": "decree",
+    "title": "Official Decree",
+    "author": "Unknown"
+  },
+  {
+    "id": "DECR_DECR_005",
+    "type": "decree",
+    "title": "Official Decree",
+    "author": "Unknown"
+  },
+  {
+    "id": "MYTH_MYTH_001",
+    "type": "myth",
+    "title": "Myth: The Singing Bard",
+    "author": "Unknown"
+  },
+  {
+    "id": "MYTH_MYTH_002",
+    "type": "myth",
+    "title": "Myth: First Menhir",
+    "author": "Unknown"
+  },
+  {
+    "id": "MYTH_MYTH_003",
+    "type": "myth",
+    "title": "Myth: The Singing Bard",
+    "author": "Unknown"
+  },
+  {
+    "id": "MYTH_MYTH_004",
+    "type": "myth",
+    "title": "Myth: First Menhir",
+    "author": "Unknown"
+  },
+  {
+    "id": "MYTH_MYTH_005",
+    "type": "myth",
+    "title": "Myth: Origin of Magic Potion",
+    "author": "Unknown"
+  },
+  {
+    "id": "LETT_LETTER_001",
+    "type": "letter",
+    "title": "Personal Letter",
+    "author": "Unknown"
+  },
+  {
+    "id": "LETT_LETTER_002",
+    "type": "letter",
+    "title": "Personal Letter",
+    "author": "Unknown"
+  },
+  {
+    "id": "LETT_LETTER_003",
+    "type": "letter",
+    "title": "Personal Letter",
+    "author": "Unknown"
+  },
+  {
+    "id": "LETT_LETTER_004",
+    "type": "letter",
+    "title": "Personal Letter",
+    "author": "Unknown"
+  },
+  {
+    "id": "LETT_LETTER_005",
+    "type": "letter",
+    "title": "Personal Letter",
+    "author": "Unknown"
+  }
+]
