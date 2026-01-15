@@ -2,7 +2,7 @@
   {
     "id": "ENCY_001",
     "type": "encyclopedia",
-    "title": "Encyclopedia: Imperial Military Organization",
+    "title": "Encyclopedia: Properties of Sunstone Elixir",
     "author": "Emerald Valley Scholars"
   },
   {
@@ -14,31 +14,31 @@
   {
     "id": "ENCY_003",
     "type": "encyclopedia",
-    "title": "Encyclopedia: Lorekeeper Practices and Rituals",
+    "title": "Encyclopedia: Structure of Oakhaven Settlement",
     "author": "Emerald Valley Scholars"
   },
   {
     "id": "ENCY_004",
     "type": "encyclopedia",
-    "title": "Encyclopedia: Properties of Sunstone Elixir",
+    "title": "Encyclopedia: Imperial Military Organization",
     "author": "Emerald Valley Scholars"
   },
   {
     "id": "ENCY_005",
     "type": "encyclopedia",
-    "title": "Encyclopedia: Structure of Oakhaven Settlement",
+    "title": "Encyclopedia: Properties of Sunstone Elixir",
     "author": "Emerald Valley Scholars"
   },
   {
     "id": "ENCY_006",
     "type": "encyclopedia",
-    "title": "Encyclopedia: Structure of Oakhaven Settlement",
+    "title": "Encyclopedia: Imperial Military Organization",
     "author": "Emerald Valley Scholars"
   },
   {
     "id": "ENCY_007",
     "type": "encyclopedia",
-    "title": "Encyclopedia: Imperial Military Organization",
+    "title": "Encyclopedia: Structure of Oakhaven Settlement",
     "author": "Emerald Valley Scholars"
   },
   {
@@ -50,116 +50,116 @@
   {
     "id": "ENCY_009",
     "type": "encyclopedia",
-    "title": "Encyclopedia: Structure of Oakhaven Settlement",
+    "title": "Encyclopedia: Imperial Military Organization",
     "author": "Emerald Valley Scholars"
   },
   {
     "id": "ENCY_010",
     "type": "encyclopedia",
-    "title": "Encyclopedia: Types of Standing Stones",
+    "title": "Encyclopedia: Lorekeeper Practices and Rituals",
     "author": "Emerald Valley Scholars"
   },
   {
     "id": "ENCY_011",
     "type": "encyclopedia",
-    "title": "Encyclopedia: Imperial Military Organization",
+    "title": "Encyclopedia: Types of Standing Stones",
     "author": "Emerald Valley Scholars"
   },
   {
     "id": "ENCY_012",
     "type": "encyclopedia",
-    "title": "Encyclopedia: Lorekeeper Practices and Rituals",
+    "title": "Encyclopedia: Imperial Military Organization",
     "author": "Emerald Valley Scholars"
   },
   {
     "id": "ENCY_013",
     "type": "encyclopedia",
-    "title": "Encyclopedia: Properties of Sunstone Elixir",
+    "title": "Encyclopedia: Imperial Military Organization",
     "author": "Emerald Valley Scholars"
   },
   {
     "id": "ENCY_014",
     "type": "encyclopedia",
-    "title": "Encyclopedia: Lorekeeper Practices and Rituals",
+    "title": "Encyclopedia: Types of Standing Stones",
     "author": "Emerald Valley Scholars"
   },
   {
     "id": "ENCY_015",
     "type": "encyclopedia",
-    "title": "Encyclopedia: Imperial Military Organization",
+    "title": "Encyclopedia: Structure of Oakhaven Settlement",
     "author": "Emerald Valley Scholars"
   },
   {
     "id": "JOUR_001",
     "type": "journal",
-    "title": "Personal Journal of Verus",
-    "author": "Verus"
+    "title": "Personal Journal of Morac",
+    "author": "Morac"
   },
   {
     "id": "JOUR_002",
+    "type": "journal",
+    "title": "Personal Journal of Taraax",
+    "author": "Taraax"
+  },
+  {
+    "id": "JOUR_003",
     "type": "journal",
     "title": "Personal Journal of Valley Elder",
     "author": "Valley Elder"
   },
   {
-    "id": "JOUR_003",
-    "type": "journal",
-    "title": "Personal Journal of Taraos",
-    "author": "Taraos"
-  },
-  {
     "id": "JOUR_004",
-    "type": "journal",
-    "title": "Personal Journal of Taraos",
-    "author": "Taraos"
-  },
-  {
-    "id": "JOUR_005",
     "type": "journal",
     "title": "Personal Journal of Imperial Observer",
     "author": "Imperial Observer"
   },
   {
+    "id": "JOUR_005",
+    "type": "journal",
+    "title": "Personal Journal of Carnoix",
+    "author": "Carnoix"
+  },
+  {
     "id": "JOUR_006",
+    "type": "journal",
+    "title": "Personal Journal of Morac",
+    "author": "Morac"
+  },
+  {
+    "id": "JOUR_007",
+    "type": "journal",
+    "title": "Personal Journal of Morac",
+    "author": "Morac"
+  },
+  {
+    "id": "JOUR_008",
     "type": "journal",
     "title": "Personal Journal of Valley Elder",
     "author": "Valley Elder"
   },
   {
-    "id": "JOUR_007",
-    "type": "journal",
-    "title": "Personal Journal of Verix",
-    "author": "Verix"
-  },
-  {
-    "id": "JOUR_008",
-    "type": "journal",
-    "title": "Personal Journal of Taraos",
-    "author": "Taraos"
-  },
-  {
     "id": "JOUR_009",
     "type": "journal",
-    "title": "Personal Journal of Taraos",
-    "author": "Taraos"
+    "title": "Personal Journal of Morac",
+    "author": "Morac"
   },
   {
     "id": "JOUR_010",
     "type": "journal",
-    "title": "Personal Journal of Taraos",
-    "author": "Taraos"
+    "title": "Personal Journal of Imperial Observer",
+    "author": "Imperial Observer"
   },
   {
     "id": "REPO_001",
     "type": "report",
     "title": "Official Field Report",
-    "author": "Merchant Informant"
+    "author": "Imperial Legate"
   },
   {
     "id": "REPO_002",
     "type": "report",
     "title": "Official Field Report",
-    "author": "Lorekeeper Scribe"
+    "author": "Imperial Legate"
   },
   {
     "id": "REPO_003",
@@ -171,19 +171,19 @@
     "id": "REPO_004",
     "type": "report",
     "title": "Official Field Report",
-    "author": "Lorekeeper Scribe"
+    "author": "Imperial Legate"
   },
   {
     "id": "REPO_005",
     "type": "report",
     "title": "Official Field Report",
-    "author": "Lorekeeper Scribe"
+    "author": "Valley Scout"
   },
   {
     "id": "REPO_006",
     "type": "report",
     "title": "Official Field Report",
-    "author": "Lorekeeper Scribe"
+    "author": "Merchant Informant"
   },
   {
     "id": "REPO_007",
@@ -195,13 +195,13 @@
     "id": "REPO_008",
     "type": "report",
     "title": "Official Field Report",
-    "author": "Valley Scout"
+    "author": "Imperial Legate"
   },
   {
     "id": "REPO_009",
     "type": "report",
     "title": "Official Field Report",
-    "author": "Merchant Informant"
+    "author": "Lorekeeper Scribe"
   },
   {
     "id": "REPO_010",
@@ -242,25 +242,25 @@
   {
     "id": "MYTH_001",
     "type": "myth",
-    "title": "Legend: The First Standing Stone",
+    "title": "Legend: Why the Imperials Cannot Conquer",
     "author": "Unknown"
   },
   {
     "id": "MYTH_002",
     "type": "myth",
-    "title": "Legend: Why the Imperials Cannot Conquer",
+    "title": "Legend: Origin of the Sunstone Elixir",
     "author": "Unknown"
   },
   {
     "id": "MYTH_003",
     "type": "myth",
-    "title": "Legend: Why the Imperials Cannot Conquer",
+    "title": "Legend: The First Standing Stone",
     "author": "Unknown"
   },
   {
     "id": "MYTH_004",
     "type": "myth",
-    "title": "Legend: The First Standing Stone",
+    "title": "Legend: Origin of the Sunstone Elixir",
     "author": "Unknown"
   },
   {

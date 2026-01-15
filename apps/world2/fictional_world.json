@@ -77,7 +77,7 @@
     {
       "id": "hero",
       "original_name": "Hero",
-      "fictional_name": "Taraix",
+      "fictional_name": "Lugorix",
       "type": "hero",
       "description": "A clever hero from the stories.",
       "traits": [
@@ -101,7 +101,7 @@
     {
       "id": "alchemist",
       "original_name": "Alchemist",
-      "fictional_name": "Carnoac",
+      "fictional_name": "Moros",
       "type": "alchemist",
       "description": "A wise alchemist from the stories.",
       "traits": [
@@ -113,7 +113,7 @@
     {
       "id": "chief",
       "original_name": "Chief",
-      "fictional_name": "Carnoax",
+      "fictional_name": "Lugoix",
       "type": "chief",
       "description": "A proud chief from the stories.",
       "traits": [
@@ -125,7 +125,7 @@
     {
       "id": "bard",
       "original_name": "Bard",
-      "fictional_name": "Taraix",
+      "fictional_name": "Morac",
       "type": "bard",
       "description": "A musical bard from the stories.",
       "traits": [
@@ -137,7 +137,7 @@
     {
       "id": "emperor",
       "original_name": "Emperor",
-      "fictional_name": "Lucius Valerius",
+      "fictional_name": "Septimus Aurelius",
       "type": "emperor",
       "description": "A ambitious emperor from the stories.",
       "traits": [
@@ -149,7 +149,7 @@
     {
       "id": "blacksmith",
       "original_name": "Blacksmith",
-      "fictional_name": "Taraos",
+      "fictional_name": "Taraac",
       "type": "blacksmith",
       "description": "A strong blacksmith from the stories.",
       "traits": [
@@ -161,7 +161,7 @@
     {
       "id": "fisher",
       "original_name": "Fisher",
-      "fictional_name": "Belorix",
+      "fictional_name": "Beloac",
       "type": "fisher",
       "description": "A stubborn fisher from the stories.",
       "traits": [
@@ -174,31 +174,31 @@
   "magic_items": [
     {
       "original": "Magic Potion",
-      "fictional": "Star Blade",
+      "fictional": "Sun Blade",
       "type": "potion",
       "effect": "temporary superhuman strength"
     },
     {
       "original": "Golden Sickle",
-      "fictional": "Star Chalice",
+      "fictional": "Sun Orb",
       "type": "tool",
       "effect": "harvests special herbs"
     },
     {
       "original": "Menhir",
-      "fictional": "Sun Blade",
+      "fictional": "Golden Blade",
       "type": "artifact",
       "effect": "standing stone with mysterious properties"
     },
     {
       "original": "Roman Standard",
-      "fictional": "Moon Chalice",
+      "fictional": "Silver Amulet",
       "type": "symbol",
       "effect": "military banner"
     },
     {
       "original": "Wild Boar",
-      "fictional": "Star Amulet",
+      "fictional": "Golden Chalice",
       "type": "food",
       "effect": "favorite feast dish"
     }
@@ -206,13 +206,13 @@
   "historical_events": [
     {
       "original": "Potion Accident",
-      "fictional": "The Great War",
+      "fictional": "The Crystal Rebellion",
       "impact": "high",
       "year": "50 years ago"
     },
     {
       "original": "Battle of Babaorum",
-      "fictional": "The Emerald War",
+      "fictional": "The Silent Rebellion",
       "impact": "medium",
       "year": "10 years ago"
     },
@@ -224,7 +224,7 @@
     },
     {
       "original": "First Resistance",
-      "fictional": "The Emerald War",
+      "fictional": "The Emerald Accord",
       "impact": "high",
       "year": "30 years ago"
     }
@@ -232,51 +232,51 @@
   "unique_terms": [
     {
       "original": "Gaul",
-      "fictional": "Starstone"
+      "fictional": "riverhaven"
     },
     {
       "original": "Rome",
-      "fictional": "stoneburg"
+      "fictional": "glendale"
     },
     {
       "original": "mistletoe",
-      "fictional": "Oak way"
+      "fictional": "Starleaf"
     },
     {
       "original": "Getafix's hut",
-      "fictional": "Oak way"
+      "fictional": "Sunleaf"
     },
     {
       "original": "boar",
-      "fictional": "Moonleaf"
+      "fictional": "moonford"
     },
     {
       "original": "feast",
-      "fictional": "vorhaven"
+      "fictional": "Sunstone"
     },
     {
       "original": "centurion",
-      "fictional": "Starstone"
+      "fictional": "glenhaven"
     },
     {
       "original": "legion",
-      "fictional": "stonehill"
+      "fictional": "Iron rite"
     },
     {
       "original": "druid",
-      "fictional": "vorhaven"
+      "fictional": "Starwood"
     },
     {
       "original": "bard",
-      "fictional": "vorburg"
+      "fictional": "riverburg"
     },
     {
       "original": "village",
-      "fictional": "Iron way"
+      "fictional": "glenford"
     },
     {
       "original": "camp",
-      "fictional": "Starwood"
+      "fictional": "Oak path"
     }
   ]
 }

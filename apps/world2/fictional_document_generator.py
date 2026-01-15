@@ -549,5 +549,221 @@ def main():
     print("Documents are ready for RAG testing!")
     print("All terms are fictional to avoid model memory bias.")
 
+# apps/world2/fictional_document_generator.py
+# ... предыдущий код остается без изменений до функции main() ...
+
+def generate_qa_pairs(documents, world_data, terms_map):
+    """Генерирует тестовые QA пары для RAG"""
+
+    # Используем вымышленные термины из мира
+    hero = None
+    strong_hero = None
+    alchemist = None
+    chief = None
+    bard = None
+    blacksmith = None
+    fisher = None
+
+    # Находим вымышленные имена персонажей
+    for char in world_data.get("characters", []):
+        if char.get("type") == "hero":
+            hero = char.get("fictional_name", "Veridix")
+        elif char.get("type") == "strong_hero":
+            strong_hero = char.get("fictional_name", "Megalix")
+        elif char.get("type") == "alchemist":
+            alchemist = char.get("fictional_name", "Alchemix")
+        elif char.get("type") == "chief":
+            chief = char.get("fictional_name", "Stentorix")
+        elif char.get("type") == "bard":
+            bard = char.get("fictional_name", "Melodix")
+        elif char.get("type") == "blacksmith":
+            blacksmith = char.get("fictional_name", "Blacksmith")
+        elif char.get("type") == "fisher":
+            fisher = char.get("fictional_name", "Fisher")
+
+    # Получаем вымышленные названия предметов
+    magic_potion = terms_map.get("items", {}).get("Magic Potion", "Sunstone Elixir")
+    menhir = terms_map.get("items", {}).get("Menhir", "Standing Stone")
+    wild_boar = terms_map.get("items", {}).get("Wild Boar", "Forest Stag")
+    mistletoe = terms_map.get("terms", {}).get("mistletoe", "moonleaf")
+
+    # Собираем ID документов по типам для ссылок
+    encyclopedia_docs = [doc['id'] for doc in documents if doc['type'] == 'encyclopedia']
+    journal_docs = [doc['id'] for doc in documents if doc['type'] == 'journal']
+    report_docs = [doc['id'] for doc in documents if doc['type'] == 'report']
+    myth_docs = [doc['id'] for doc in documents if doc['type'] == 'myth']
+
+    qa_pairs = [
+        {
+            "question": f"What are the main ingredients and effects of the {magic_potion}?",
+            "answer": f"The primary ingredient is {mistletoe} harvested during the twin suns' alignment. Effects include temporary enhanced vitality, accelerated movement, and temporary resilience. Chronic exposure leads to permanent strength.",
+            "source_docs": encyclopedia_docs[:2] if encyclopedia_docs else ["ENCY_001", "ENCY_010"],
+            "difficulty": "easy",
+            "category": "magic_items"
+        },
+        {
+            "question": f"Why is {strong_hero} permanently strong without drinking the {magic_potion}?",
+            "answer": f"{strong_hero} fell into a cauldron of {magic_potion} as a baby, giving him permanent superhuman strength without needing to drink it like others.",
+            "source_docs": myth_docs[:1] + encyclopedia_docs[:1] if myth_docs and encyclopedia_docs else ["MYTH_001", "ENCY_005"],
+            "difficulty": "medium",
+            "category": "characters"
+        },
+        {
+            "question": f"What are the names of the Imperial outposts surrounding Oakhaven?",
+            "answer": "The main Imperial outposts are Fort Argentum, Fort Ferrum, Fort Aurum, and Fort Plumbum.",
+            "source_docs": encyclopedia_docs[2:3] + report_docs[:1] if len(encyclopedia_docs) > 2 and report_docs else ["ENCY_003", "REP_008"],
+            "difficulty": "easy",
+            "category": "geography"
+        },
+        {
+            "question": f"How does the village deal with {bard}'s singing during gatherings?",
+            "answer": f"{bard} is usually tied to a tree or otherwise restrained during gatherings to prevent him from singing, as his music is considered terrible.",
+            "source_docs": journal_docs[:2] if journal_docs else ["JOURN_005", "JOURN_008"],
+            "difficulty": "medium",
+            "category": "culture"
+        },
+        {
+            "question": f"What is the relationship between {blacksmith} and {fisher} in Oakhaven?",
+            "answer": f"They frequently argue and fight, representing the ongoing conflict between the blacksmith and fisher trades in the village.",
+            "source_docs": journal_docs[3:4] + report_docs[1:2] if len(journal_docs) > 3 and len(report_docs) > 1 else ["JOURN_002", "REP_006"],
+            "difficulty": "hard",
+            "category": "social_structure"
+        },
+        {
+            "question": f"What are the three main factions in Veridonia and their symbols?",
+            "answer": "1. Valefolk (Oakhaven villagers) - Symbol: Oak tree with twin suns. 2. Imperials (occupying force) - Symbol: Iron eagle. 3. Lorekeepers (scholars/alchemists) - Symbol: Crystal orb.",
+            "source_docs": encyclopedia_docs[:3] if len(encyclopedia_docs) > 2 else ["ENCY_001", "ENCY_002", "ENCY_004"],
+            "difficulty": "medium",
+            "category": "factions"
+        },
+        {
+            "question": f"What is the primary trade of {strong_hero} and what are the sizes of the stones he delivers?",
+            "answer": f"{strong_hero} is a standing stone deliveryman. The stones come in three sizes: Standard (2m), Grande (3m), and Colossal (4m+).",
+            "source_docs": encyclopedia_docs[4:5] + journal_docs[1:2] if len(encyclopedia_docs) > 4 and len(journal_docs) > 1 else ["ENCY_005", "JOURN_003"],
+            "difficulty": "easy",
+            "category": "economy"
+        },
+        {
+            "question": "What are the key defensive strategies of Oakhaven against Imperial forces?",
+            "answer": "Oakhaven relies on natural valley topography, strategic use of the Sunstone Elixir, and the clever tactics of its defenders. The settlement's location in the Emerald Valley provides natural barriers.",
+            "source_docs": report_docs[:2] + encyclopedia_docs[1:2] if report_docs and len(encyclopedia_docs) > 1 else ["REP_002", "REP_005", "ENCY_002"],
+            "difficulty": "medium",
+            "category": "military"
+        },
+        {
+            "question": f"What happens during the annual gathering at the Crystalwood Grove?",
+            "answer": "The annual convocation at the Crystalwood Grove is mandatory for all Lorekeepers. They discuss herbalism, celestial observations, and preserve oral traditions.",
+            "source_docs": encyclopedia_docs[3:4] + journal_docs[4:5] if len(encyclopedia_docs) > 3 and len(journal_docs) > 4 else ["ENCY_004", "JOURN_007"],
+            "difficulty": "hard",
+            "category": "traditions"
+        },
+        {
+            "question": f"Why can't the Imperials successfully conquer Oakhaven according to legends?",
+            "answer": "According to legend, the spirit of the valley made a pact with the first chieftain that as long as they honor the Forest Stag feast, the settlement will remain protected.",
+            "source_docs": myth_docs[:2] if len(myth_docs) > 1 else ["MYTH_003", "MYTH_004"],
+            "difficulty": "medium",
+            "category": "mythology"
+        },
+        {
+            "question": f"What are {alchemist}'s main responsibilities in Oakhaven society?",
+            "answer": f"{alchemist} is the Lorekeeper responsible for brewing the Sunstone Elixir, studying herbs, serving as a healer, and preserving ancient knowledge.",
+            "source_docs": encyclopedia_docs[3:4] + journal_docs[:1] if len(encyclopedia_docs) > 3 and journal_docs else ["ENCY_004", "JOURN_001"],
+            "difficulty": "easy",
+            "category": "characters"
+        },
+        {
+            "question": "What is the social hierarchy in Oakhaven?",
+            "answer": "The social structure places the chief at the top, followed by defenders, then artisans (blacksmith, fisher, etc.), with the minstrel enjoying ceremonial status but often being restrained during gatherings.",
+            "source_docs": encyclopedia_docs[1:2] + report_docs[3:4] if len(encyclopedia_docs) > 1 and len(report_docs) > 3 else ["ENCY_002", "REP_004"],
+            "difficulty": "hard",
+            "category": "social_structure"
+        },
+        {
+            "question": f"What restrictions are placed on the use of {magic_potion} according to village decrees?",
+            "answer": f"Consumption of the {magic_potion} is restricted to defensive purposes only. Violators face quarry-cleaning duties.",
+            "source_docs": ["DECR_001", "DECR_003"] if any('DECR' in doc['id'] for doc in documents) else [],
+            "difficulty": "medium",
+            "category": "laws"
+        },
+        {
+            "question": "How do the Valefolk typically celebrate victories or important events?",
+            "answer": "They hold gatherings featuring Forest Stag roasts, storytelling, and music (though the minstrel is often restrained). These celebrations reinforce community bonds.",
+            "source_docs": journal_docs[2:3] + encyclopedia_docs[4:5] if len(journal_docs) > 2 and len(encyclopedia_docs) > 4 else ["JOURN_004", "ENCY_005"],
+            "difficulty": "easy",
+            "category": "culture"
+        },
+        {
+            "question": "What are the main exports and trade goods of Oakhaven?",
+            "answer": "Oakhaven exports standing stones, herbal remedies, and fish. They import olive oil, amphorae, and other goods from Silverport and Imperial traders.",
+            "source_docs": report_docs[2:3] + encyclopedia_docs[4:5] if len(report_docs) > 2 and len(encyclopedia_docs) > 4 else ["REP_003", "ENCY_005"],
+            "difficulty": "hard",
+            "category": "economy"
+        }
+    ]
+
+    # Фильтруем пустые source_docs
+    for qa in qa_pairs:
+        if not qa["source_docs"]:
+            # Если не нашли документы, используем общие
+            qa["source_docs"] = ["ENCY_001", "ENCY_002", "JOURN_001"]
+
+    return qa_pairs
+
+def save_qa_pairs(qa_pairs, filename="qa_pairs.jsonl"):
+    """Сохраняет QA пары в файл"""
+    import json
+
+    with open(filename, 'w', encoding='utf-8') as f:
+        for qa in qa_pairs:
+            f.write(json.dumps(qa, ensure_ascii=False) + '\n')
+
+    print(f"✓ Saved {len(qa_pairs)} QA pairs to {filename}")
+    return len(qa_pairs)
+
+def main():
+    """Основная функция генерации документов"""
+    print("Generating fictional universe documents...")
+    print("=" * 60)
+
+    # 1. Создаём генератор
+    generator = FictionalDocumentGenerator()
+
+    # 2. Генерируем документы
+    documents = generator.generate_document_set(50)
+
+    # 3. Сохраняем документы
+    count = generator.save_documents()
+
+    # 4. Генерируем и сохраняем QA пары
+    qa_pairs = generate_qa_pairs(documents, generator.world_data, generator.terms_map)
+    save_qa_pairs(qa_pairs)
+
+    print(f"\n✓ Generated {count} documents in 'fictional_documents/'")
+    print(f"✓ Universe: {generator.world_data['fictional_universe']}")
+    print(f"✓ Index saved to 'fictional_index.json'")
+    print(f"✓ Stats saved to 'generation_stats.json'")
+    print(f"✓ QA pairs saved to 'qa_pairs.jsonl'")
+
+    # 5. Показываем примеры замен
+    print("\nExample fictional terms:")
+    print("-" * 40)
+
+    categories = ['characters', 'items', 'events', 'terms']
+    for category in categories:
+        if category in generator.terms_map:
+            print(f"\n{category.upper()}:")
+            items = list(generator.terms_map.get(category, {}).items())[:3]
+            for orig, fict in items:
+                print(f"  {orig:20} → {fict}")
+
+    print("\n" + "=" * 60)
+    print("Documents are ready for RAG testing!")
+    print("All terms are fictional to avoid model memory bias.")
+    print("\nExample questions for testing:")
+    print("-" * 40)
+    for i, qa in enumerate(qa_pairs[:3], 1):
+        print(f"{i}. {qa['question']}")
+        print(f"   Difficulty: {qa['difficulty']}, Category: {qa['category']}")
+
 if __name__ == "__main__":
     main()
