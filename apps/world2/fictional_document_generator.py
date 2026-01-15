@@ -1,9 +1,15 @@
-# fictional_document_generator.py
+# apps/world2/fictional_document_generator.py
 import json
 import random
 import yaml
 from datetime import datetime, timedelta
-from fictional_world_bible import FictionalWorldBuilder
+import os
+
+# Исправляем импорт
+try:
+    from .fictional_world_bible import FictionalWorldBuilder
+except ImportError:
+    from fictional_world_bible import FictionalWorldBuilder
 
 class FictionalDocumentGenerator:
     def __init__(self):
@@ -26,12 +32,12 @@ class FictionalDocumentGenerator:
 
     def get_fictional(self, original_term, category=None):
         """Возвращает вымышленный термин для оригинального"""
-        if category:
+        if category and category in self.terms_map:
             return self.terms_map.get(category, {}).get(original_term, original_term)
 
         # Ищем во всех категориях
         for cat in self.terms_map.values():
-            if original_term in cat:
+            if isinstance(cat, dict) and original_term in cat:
                 return cat[original_term]
 
         return original_term
@@ -125,7 +131,7 @@ class FictionalDocumentGenerator:
         elif "Oakhaven" in topic:
             content += self._generate_settlement_article()
         elif "Imperial" in topic:
-            content += self._generate_imperial_article()
+            content += self._generate_imperial_military_article()  # Исправлено название!
         elif "Lorekeeper" in topic:
             content += self._generate_lorekeeper_article()
         else:
@@ -164,6 +170,27 @@ Defensive strategy relies on natural valley topography and strategic use of the 
 Social structure places the chief atop, followed by defenders, then artisans, with the minstrel {bard} enjoying ceremonial status but often being restrained during gatherings.
 Notable conflicts frequently occur between {blacksmith} and {fisher} over trade disputes."""
 
+    def _generate_imperial_military_article(self):  # Исправленное название метода
+        """Статья об имперской армии"""
+        return f"""Imperial military tactics involve constructing fortified outposts (Argentum, Ferrum, etc.) around resistant settlements.
+Standard procedure includes diplomatic overtures followed by siege tactics, though neither has succeeded against Oakhaven.
+Imperial forces are noted for discipline, engineering capabilities, and persistence despite repeated setbacks.
+Intelligence collection remains challenging due to Valefolk loyalty and dialect barriers."""
+
+    def _generate_lorekeeper_article(self):
+        alchemist = self.get_character("alchemist")
+        return f"""Lorekeeper practices encompass herbalism, celestial observation, and oral tradition preservation.
+The annual convocation at the Crystalwood Grove is mandatory for all Lorekeepers.
+{alchemist} is regarded among the most adept, particularly for elixir mastery.
+Lorekeepers serve as arbiters, instructors, and healers in Valefolk society, commanding significant respect."""
+
+    def _generate_stones_article(self):
+        strong_hero = self.get_character("strong_hero")
+        return f"""Standing stones are large, shaped monoliths used ceremonially and as {strong_hero}'s primary trade.
+Classification includes: Standard (2m), Grande (3m), and Colossal (4m+).
+Quarrying techniques involve precise fracturing along natural stone planes.
+Transport logistics remain enigmatic, as {strong_hero} conveys them single-handedly without apparent exertion."""
+
     def _journal_template(self, doc_id):
         """Дневниковая запись"""
 
@@ -193,8 +220,8 @@ Notable conflicts frequently occur between {blacksmith} and {fisher} over trade 
 
         # Шаблоны записей с вымышленными терминами
         entry_templates = [
-            f"Today brought another Imperial patrol near the valley rim. {self.get_fictional('centurion', 'terms')} Valerius attempted to approach, but as usual, the {self.get_fictional('Magic Potion', 'items')} made our defense effortless. The Imperials retreated to {self.get_fictional('Fort Argentum', 'places')}.",
-            f"{self.get_character('hero')} and I went to gather standing stones today. Found a remarkable monolith near the {self.get_fictional('Whispering Woods', 'places')}. Must remember the locations of crystal-fox dens!",
+            f"Today brought another Imperial patrol near the valley rim. Legate Valerius attempted to approach, but as usual, the {self.get_fictional('Magic Potion', 'items')} made our defense effortless. The Imperials retreated to Fort Argentum.",
+            f"{self.get_character('hero')} and I went to gather standing stones today. Found a remarkable monolith near the Whispering Woods. Must remember the locations of crystal-fox dens!",
             f"Community gathering tonight. Predictably, {self.get_character('bard')} began his ballad and had to be escorted out. The catch from {self.get_character('fisher')} was unusually brine-heavy today.",
             f"Discussed herb cultivation with {self.get_character('alchemist')}. The {self.get_fictional('mistletoe', 'terms')} is particularly potent this season. Note: avoid specimens from the northern grove—they induce drowsiness."
         ]
@@ -206,7 +233,7 @@ Notable conflicts frequently occur between {blacksmith} and {fisher} over trade 
 
     def _add_personal_reflection(self):
         reflections = [
-            f"The {self.get_fictional('wild boar', 'terms')} roast was exceptionally flavorful tonight.",
+            f"The {self.get_fictional('Wild Boar', 'items')} roast was exceptionally flavorful tonight.",
             f"Noticed Imperial scouts mapping the eastern pass.",
             f"The forge-smoke from {self.get_character('blacksmith')}'s workshop carries a distinctive metallic scent lately.",
             f"{self.get_character('bard')} is composing a new epic. May the twin suns grant us patience."
@@ -264,6 +291,22 @@ Notable conflicts frequently occur between {blacksmith} and {fisher} over trade 
             f"Production of standing stones continues at notable volume. Economic implications require further study."
         ]
         return random.choice(assessments)
+
+    def _generate_observations(self):
+        findings = [
+            "1. Elixir effects last approximately 10 minutes per dose.\n2. Settlement defenses weakest during gathering preparations.\n3. Imperial agents have been detected but captured.",
+            "1. Megalix's strength appears permanent and non-diminishing.\n2. Alchemix obtains moonleaf from three secret locations.\n3. Settlement morale remains high despite Imperial pressure.",
+            "1. Fish supply chain vulnerable to interception.\n2. Minstrel's singing causes measurable discomfort.\n3. Forest stag population stable and abundant."
+        ]
+        return random.choice(findings)
+
+    def _generate_recommendations(self):
+        recommendations = [
+            "1. Attempt diplomacy with offers of Imperial citizenship.\n2. Research counter-elixir with alchemists.\n3. Increase surveillance on moonleaf harvests.",
+            "1. Exploit internal settlement conflicts.\n2. Intercept stone deliveries for intelligence.\n3. Propose cultural exchange including olive oil.",
+            "1. Wait for natural generational change in leadership.\n2. Study elixir's long-term effects on Megalix.\n3. Establish trade relations to build dependency."
+        ]
+        return random.choice(recommendations)
 
     def _decree_template(self, doc_id):
         """Официальный указ"""
@@ -336,7 +379,7 @@ Notable conflicts frequently occur between {blacksmith} and {fisher} over trade 
         myth_stories = {
             "Origin of the Sunstone Elixir": f"Before the Imperials came, the Lorekeeper {self.get_character('alchemist')} was studying {self.get_fictional('mistletoe', 'terms')} when twin sunbeams converged on his alembic...",
             "The First Standing Stone": "In elder times, earth-giants walked the land. Where they paused to rest, their shadows petrified into the first standing stones...",
-            "Why the Imperials Cannot Conquer": f"The spirit of the valley made pact with the first chieftain that so long as they honor the {self.get_fictional('wild boar', 'terms')} feast...",
+            "Why the Imperials Cannot Conquer": f"The spirit of the valley made pact with the first chieftain that so long as they honor the {self.get_fictional('Wild Boar', 'items')} feast...",
             "The Minstrel's Curse": f"{self.get_character('bard')} was once the realm's finest singer, but he mocked the Muse of Harmony, who twisted his melodies forever..."
         }
 
@@ -383,7 +426,7 @@ Notable conflicts frequently occur between {blacksmith} and {fisher} over trade 
 
         letters = [
             f"I trust this finds you well. Matters here proceed with usual vigor. {self.get_character('blacksmith')} and {self.get_character('fisher')} had another dispute today over trade rights.",
-            f"Critical intelligence: Imperials from {self.get_fictional('Fort Ferrum', 'places')} are preparing an excursion. Observed drilling near the western woods.",
+            f"Critical intelligence: Imperials from Fort Ferrum are preparing an excursion. Observed drilling near the western woods.",
             f"Require additional {self.get_fictional('mistletoe', 'terms')} for elixir preparation. The yield from the {random.choice(['sunlit grove', 'sacred copse', 'elder circle'])} was meager this season.",
             f"{self.get_character('strong_hero')} delivered another load of standing stones today. One monolith was so massive it cracked the gate lintel! Chief {self.get_character('chief')} expressed measured displeasure."
         ]
@@ -397,7 +440,7 @@ Notable conflicts frequently occur between {blacksmith} and {fisher} over trade 
 
     def _add_postscript(self):
         ps_options = [
-            f"Do not forget the {self.get_fictional('wild boar', 'terms')} for the gathering!",
+            f"Do not forget the {self.get_fictional('Wild Boar', 'items')} for the gathering!",
             "Bring more olive amphorae next caravan.",
             "Burn this after reading—Imperials intercept messages.",
             f"{self.get_character('strong_hero')} sends greetings (and requests more standing stones)."
@@ -434,7 +477,6 @@ Notable conflicts frequently occur between {blacksmith} and {fisher} over trade 
 
     def save_documents(self, folder="fictional_documents"):
         """Сохраняет документы в файлы"""
-        import os
         os.makedirs(folder, exist_ok=True)
 
         for doc in self.documents:
@@ -472,40 +514,8 @@ Notable conflicts frequently occur between {blacksmith} and {fisher} over trade 
 
         return len(self.documents)
 
-# Дополнительный скрипт для замены терминов (на случай необходимости)
-class TermReplacer:
-    """Заменяет термины в уже сгенерированных документах"""
-
-    @staticmethod
-    def replace_in_folder(folder_path, terms_map):
-        import os
-        import re
-
-        replaced_count = 0
-
-        for filename in os.listdir(folder_path):
-            if filename.endswith('.txt'):
-                filepath = os.path.join(folder_path, filename)
-                with open(filepath, 'r', encoding='utf-8') as f:
-                    content = f.read()
-
-                # Заменяем термины
-                for original, fictional in terms_map.items():
-                    if original in content:
-                        # Заменяем с сохранением регистра
-                        pattern = re.compile(re.escape(original), re.IGNORECASE)
-                        content = pattern.sub(fictional, content)
-                        replaced_count += 1
-
-                # Сохраняем обратно
-                with open(filepath, 'w', encoding='utf-8') as f:
-                    f.write(content)
-
-        print(f"Replaced {replaced_count} term occurrences")
-        return replaced_count
-
-# Основной скрипт
 def main():
+    """Основная функция генерации документов"""
     print("Generating fictional universe documents...")
     print("=" * 60)
 
@@ -529,10 +539,11 @@ def main():
 
     categories = ['characters', 'items', 'events', 'terms']
     for category in categories:
-        print(f"\n{category.upper()}:")
-        items = list(generator.terms_map.get(category, {}).items())[:3]
-        for orig, fict in items:
-            print(f"  {orig:20} → {fict}")
+        if category in generator.terms_map:
+            print(f"\n{category.upper()}:")
+            items = list(generator.terms_map.get(category, {}).items())[:3]
+            for orig, fict in items:
+                print(f"  {orig:20} → {fict}")
 
     print("\n" + "=" * 60)
     print("Documents are ready for RAG testing!")

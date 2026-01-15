@@ -1,4 +1,4 @@
-# fictional_world_bible.py - Полностью вымышленный мир на основе структуры Астерикса
+# apps/world2/fictional_world_bible.py
 import json
 import random
 
@@ -218,8 +218,8 @@ class FictionalWorldBuilder:
         print(f"✓ Mapping saved to {filename}")
         return mapping_info
 
-# Создаём мир и сохраняем его
-if __name__ == "__main__":
+def main():
+    """Основная функция для запуска скрипта"""
     builder = FictionalWorldBuilder()
     world_data, mapping = builder.build_world()
 
@@ -241,3 +241,9 @@ if __name__ == "__main__":
     examples = list(mapping.items())[:10]
     for orig, fict in examples:
         print(f"  {orig:20} → {fict}")
+
+    return world_data, mapping
+
+# Создаём мир и сохраняем его
+if __name__ == "__main__":
+    main()

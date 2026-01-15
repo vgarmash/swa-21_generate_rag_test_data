@@ -1,0 +1,282 @@
+{
+  "original_universe": "Asterix and Obelix",
+  "fictional_universe": "The Chronicles of Veridonia",
+  "description": "A fictional universe inspired by Asterix structure but with completely original names and terms",
+  "country_name": "Veridonia",
+  "time_period": "Age of the Twin Suns",
+  "regions": [
+    {
+      "original": "Armorican Village",
+      "fictional": "Oakhaven",
+      "description": "A small village in the Emerald Valley that miraculously resists Imperial occupation.",
+      "key_locations": [
+        "Town square",
+        "Alchemist's tower",
+        "Fishery",
+        "Stone quarry"
+      ],
+      "climate": "Temperate, with misty mornings"
+    },
+    {
+      "original": "Roman Camps",
+      "fictional": "Imperial Outposts",
+      "description": "Military camps surrounding the valley, constantly being rebuilt after attacks.",
+      "key_locations": [
+        "Fort Argentum",
+        "Fort Ferrum",
+        "Fort Aurum",
+        "Fort Plumbum"
+      ],
+      "climate": "Arid, dusty"
+    },
+    {
+      "original": "Lutetia",
+      "fictional": "Silverport",
+      "description": "Bustling trading town with markets and Imperial influence.",
+      "key_locations": [
+        "Grand Bazaar",
+        "Sailor's Rest Inn",
+        "Imperial garrison"
+      ],
+      "climate": "Coastal, humid"
+    }
+  ],
+  "factions": [
+    {
+      "original": "Gauls",
+      "fictional": "Valefolk",
+      "description": "Proud inhabitants of the Emerald Valley, known for resilience.",
+      "symbol": "Oak tree with twin suns",
+      "colors": [
+        "Green",
+        "Brown"
+      ]
+    },
+    {
+      "original": "Romans",
+      "fictional": "Imperials",
+      "description": "Expansionist empire trying to conquer the valley.",
+      "symbol": "Iron eagle",
+      "colors": [
+        "Red",
+        "Gold"
+      ]
+    },
+    {
+      "original": "Druids",
+      "fictional": "Lorekeepers",
+      "description": "Wise scholars and alchemists preserving ancient knowledge.",
+      "symbol": "Crystal orb",
+      "colors": [
+        "Blue",
+        "White"
+      ]
+    }
+  ],
+  "characters": [
+    {
+      "id": "hero",
+      "original_name": "Hero",
+      "fictional_name": "Taraix",
+      "type": "hero",
+      "description": "A clever hero from the stories.",
+      "traits": [
+        "clever",
+        "small",
+        "strategic"
+      ]
+    },
+    {
+      "id": "strong_hero",
+      "original_name": "Strong Hero",
+      "fictional_name": "Taraos",
+      "type": "strong_hero",
+      "description": "A strong strong hero from the stories.",
+      "traits": [
+        "strong",
+        "friendly",
+        "loves food"
+      ]
+    },
+    {
+      "id": "alchemist",
+      "original_name": "Alchemist",
+      "fictional_name": "Carnoac",
+      "type": "alchemist",
+      "description": "A wise alchemist from the stories.",
+      "traits": [
+        "wise",
+        "old",
+        "knowledgeable"
+      ]
+    },
+    {
+      "id": "chief",
+      "original_name": "Chief",
+      "fictional_name": "Carnoax",
+      "type": "chief",
+      "description": "A proud chief from the stories.",
+      "traits": [
+        "proud",
+        "loud",
+        "respected"
+      ]
+    },
+    {
+      "id": "bard",
+      "original_name": "Bard",
+      "fictional_name": "Taraix",
+      "type": "bard",
+      "description": "A musical bard from the stories.",
+      "traits": [
+        "musical",
+        "unskilled",
+        "optimistic"
+      ]
+    },
+    {
+      "id": "emperor",
+      "original_name": "Emperor",
+      "fictional_name": "Lucius Valerius",
+      "type": "emperor",
+      "description": "A ambitious emperor from the stories.",
+      "traits": [
+        "ambitious",
+        "strategic",
+        "proud"
+      ]
+    },
+    {
+      "id": "blacksmith",
+      "original_name": "Blacksmith",
+      "fictional_name": "Taraos",
+      "type": "blacksmith",
+      "description": "A strong blacksmith from the stories.",
+      "traits": [
+        "strong",
+        "hot-tempered",
+        "skilled"
+      ]
+    },
+    {
+      "id": "fisher",
+      "original_name": "Fisher",
+      "fictional_name": "Belorix",
+      "type": "fisher",
+      "description": "A stubborn fisher from the stories.",
+      "traits": [
+        "stubborn",
+        "proud",
+        "traditional"
+      ]
+    }
+  ],
+  "magic_items": [
+    {
+      "original": "Magic Potion",
+      "fictional": "Star Blade",
+      "type": "potion",
+      "effect": "temporary superhuman strength"
+    },
+    {
+      "original": "Golden Sickle",
+      "fictional": "Star Chalice",
+      "type": "tool",
+      "effect": "harvests special herbs"
+    },
+    {
+      "original": "Menhir",
+      "fictional": "Sun Blade",
+      "type": "artifact",
+      "effect": "standing stone with mysterious properties"
+    },
+    {
+      "original": "Roman Standard",
+      "fictional": "Moon Chalice",
+      "type": "symbol",
+      "effect": "military banner"
+    },
+    {
+      "original": "Wild Boar",
+      "fictional": "Star Amulet",
+      "type": "food",
+      "effect": "favorite feast dish"
+    }
+  ],
+  "historical_events": [
+    {
+      "original": "Potion Accident",
+      "fictional": "The Great War",
+      "impact": "high",
+      "year": "50 years ago"
+    },
+    {
+      "original": "Battle of Babaorum",
+      "fictional": "The Emerald War",
+      "impact": "medium",
+      "year": "10 years ago"
+    },
+    {
+      "original": "Caesar's Invasion",
+      "fictional": "The Emerald Accord",
+      "impact": "high",
+      "year": "20 years ago"
+    },
+    {
+      "original": "First Resistance",
+      "fictional": "The Emerald War",
+      "impact": "high",
+      "year": "30 years ago"
+    }
+  ],
+  "unique_terms": [
+    {
+      "original": "Gaul",
+      "fictional": "Starstone"
+    },
+    {
+      "original": "Rome",
+      "fictional": "stoneburg"
+    },
+    {
+      "original": "mistletoe",
+      "fictional": "Oak way"
+    },
+    {
+      "original": "Getafix's hut",
+      "fictional": "Oak way"
+    },
+    {
+      "original": "boar",
+      "fictional": "Moonleaf"
+    },
+    {
+      "original": "feast",
+      "fictional": "vorhaven"
+    },
+    {
+      "original": "centurion",
+      "fictional": "Starstone"
+    },
+    {
+      "original": "legion",
+      "fictional": "stonehill"
+    },
+    {
+      "original": "druid",
+      "fictional": "vorhaven"
+    },
+    {
+      "original": "bard",
+      "fictional": "vorburg"
+    },
+    {
+      "original": "village",
+      "fictional": "Iron way"
+    },
+    {
+      "original": "camp",
+      "fictional": "Starwood"
+    }
+  ]
+}

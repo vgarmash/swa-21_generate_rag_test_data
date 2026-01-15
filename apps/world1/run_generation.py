@@ -1,44 +1,73 @@
 #!/usr/bin/env python3
-# run_generation.py - Основной скрипт запуска
-import subprocess
+# apps/world1/run_generation.py
 import sys
+import os
 import time
+
+# Добавляем текущую директорию в путь Python
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+def run_python_script(script_name):
+    """Запускает Python скрипт напрямую, без subprocess"""
+    try:
+        print(f"  Executing: {script_name}")
+
+        if script_name == "document_generator.py":
+            from document_generator import main as script_main
+            script_main()
+        elif script_name == "analyze_corpus.py":
+            from analyze_corpus import main as script_main
+            script_main()
+        else:
+            print(f"  ❌ Unknown script: {script_name}")
+            return False
+
+        return True
+    except Exception as e:
+        print(f"  ❌ Error executing {script_name}: {e}")
+        import traceback
+        traceback.print_exc()
+        return False
 
 def main():
     print("🚀 Asterix Universe Document Generator")
     print("=" * 50)
 
+    # Создаём папки
+    output_dir = "documents"
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+
     steps = [
-        ("Generating world data...", "python world_bible.py"),
-        ("Creating documents...", "python document_generator.py"),
-        ("Analyzing corpus...", "python analyze_corpus.py")
+        ("Creating documents...", "document_generator.py"),
+        ("Analyzing corpus...", "analyze_corpus.py")
     ]
 
-    for description, command in steps:
+    for description, script in steps:
         print(f"\n📝 {description}")
-        try:
-            result = subprocess.run(command, shell=True, capture_output=True, text=True)
-            if result.returncode != 0:
-                print(f"  Warning: Command returned {result.returncode}")
-                if result.stderr:
-                    print(f"  Error: {result.stderr[:200]}")
-            else:
-                print("  ✅ Done")
-        except Exception as e:
-            print(f"  ❌ Failed: {e}")
-
+        success = run_python_script(script)
+        if success:
+            print("  ✅ Done")
+        else:
+            print("  ⚠️  Warning: Script had issues")
         time.sleep(0.5)
 
     print("\n" + "=" * 50)
     print("🎉 Generation complete!")
-    print("\n📁 Output structure:")
-    print("  documents/        - 50 generated text files")
-    print("  document_index.json - Index of all documents")
-    print("  qa_pairs.jsonl    - Test QA pairs for RAG")
-    print("  corpus_network.json - Visualization data")
-    print("\n📊 To visualize the network, use:")
-    print("  https://observablehq.com/@d3/force-directed-graph")
-    print("  and load corpus_network.json")
+
+    # Проверяем созданные файлы
+    generated_files = []
+    for filename in ["document_index.json", "qa_pairs.jsonl", "corpus_network.json"]:
+        if os.path.exists(filename):
+            generated_files.append(filename)
+
+    print(f"\n📁 Output structure:")
+    for file in generated_files:
+        print(f"  {file}")
+
+    if os.path.exists(output_dir):
+        doc_count = len([f for f in os.listdir(output_dir) if f.endswith('.txt')])
+        print(f"  {output_dir}/ - {doc_count} document files")
 
 if __name__ == "__main__":
     main()

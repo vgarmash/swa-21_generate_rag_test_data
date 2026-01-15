@@ -509,6 +509,4 @@ def generate_qa_pairs(documents):
             f.write(json.dumps(qa, ensure_ascii=False) + '\n')
 
 if __name__ == "__main__":
-    import os
-    os.makedirs("documents", exist_ok=True)
     main()

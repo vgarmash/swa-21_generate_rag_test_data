@@ -1,4 +1,4 @@
-# validate_fictional_corpus.py
+# apps/world2/validate_fictional_corpus.py
 import json
 import os
 import re
@@ -11,11 +11,18 @@ class FictionalCorpusValidator:
         self.load_documents()
 
         # Загружаем маппинг
-        with open('terms_map.json', 'r', encoding='utf-8') as f:
-            self.terms_map = json.load(f)
+        if os.path.exists('terms_map.json'):
+            with open('terms_map.json', 'r', encoding='utf-8') as f:
+                self.terms_map = json.load(f)
+        else:
+            self.terms_map = {"term_mappings": {}}
 
     def load_documents(self):
         """Загружает документы"""
+        if not os.path.exists(self.docs_folder):
+            print(f"⚠️  Directory '{self.docs_folder}' not found")
+            return
+
         for filename in os.listdir(self.docs_folder):
             if filename.endswith('.txt'):
                 with open(os.path.join(self.docs_folder, filename), 'r', encoding='utf-8') as f:
@@ -53,12 +60,15 @@ class FictionalCorpusValidator:
 
     def analyze_term_usage(self):
         """Анализирует использование вымышленных терминов"""
+        term_mappings = self.terms_map.get('term_mappings', {})
         all_fictional_terms = []
-        for category in self.terms_map['term_mappings'].values():
-            if isinstance(category, dict):
-                all_fictional_terms.extend(category.values())
-            else:
-                all_fictional_terms.append(category)
+
+        # Собираем все вымышленные термины
+        for value in term_mappings.values():
+            if isinstance(value, dict):
+                all_fictional_terms.extend(value.values())
+            elif isinstance(value, str):
+                all_fictional_terms.append(value)
 
         term_usage = Counter()
 
@@ -103,6 +113,10 @@ class FictionalCorpusValidator:
         print("FICTION CORPUS VALIDATION REPORT")
         print("=" * 60)
 
+        if not self.documents:
+            print("⚠️  No documents found. Please generate documents first.")
+            return {"error": "No documents found"}
+
         # 1. Проверка на оригинальные термины
         original_free = self.check_for_original_terms()
 
@@ -146,19 +160,25 @@ class FictionalCorpusValidator:
             score += 2
             print("✓ Cross-references: PASS (2/2)")
         else:
-            print(f"✗ Cross-references: PARTIAL ({2 - min(2, len(broken_refs)/10):.1f}/2)")
+            deduction = min(2, len(broken_refs) / 10)
+            score += (2 - deduction)
+            print(f"✗ Cross-references: PARTIAL ({2 - deduction:.1f}/2)")
 
         if len(term_usage) >= 20:
             score += 2
             print("✓ Term diversity: PASS (2/2)")
         else:
-            print(f"✗ Term diversity: PARTIAL ({min(2, len(term_usage)/10):.1f}/2)")
+            partial_score = min(2, len(term_usage) / 10)
+            score += partial_score
+            print(f"✗ Term diversity: PARTIAL ({partial_score:.1f}/2)")
 
         if avg_refs >= 1.0:
             score += 2
             print("✓ Interconnectivity: PASS (2/2)")
         else:
-            print(f"✗ Interconnectivity: PARTIAL ({min(2, avg_refs):.1f}/2)")
+            partial_score = min(2, avg_refs)
+            score += partial_score
+            print(f"✗ Interconnectivity: PARTIAL ({partial_score:.1f}/2)")
 
         print(f"\n  FINAL SCORE: {score}/8 ({score/8*100:.1f}%)")
 
@@ -171,6 +191,7 @@ class FictionalCorpusValidator:
         }
 
 def main():
+    """Основная функция валидации"""
     print("🔍 Validating Fictional Corpus")
     print("=" * 60)
 
