@@ -5,27 +5,29 @@ import re
 from collections import Counter
 
 class FictionalCorpusValidator:
-    def __init__(self, docs_folder="fictional_documents"):
-        self.docs_folder = docs_folder
+    def __init__(self, knowledge_base_folder="knowledge_base", generated_folder="generated"):
+        self.knowledge_base_folder = knowledge_base_folder
+        self.generated_folder = generated_folder
         self.documents = []
         self.load_documents()
 
-        # Загружаем маппинг
-        if os.path.exists('terms_map.json'):
-            with open('terms_map.json', 'r', encoding='utf-8') as f:
+        # Загружаем маппинг из generated папки
+        terms_map_path = os.path.join(generated_folder, "terms_map.json")
+        if os.path.exists(terms_map_path):
+            with open(terms_map_path, 'r', encoding='utf-8') as f:
                 self.terms_map = json.load(f)
         else:
             self.terms_map = {"term_mappings": {}}
 
     def load_documents(self):
-        """Загружает документы"""
-        if not os.path.exists(self.docs_folder):
-            print(f"⚠️  Directory '{self.docs_folder}' not found")
+        """Загружает документы из knowledge_base папки"""
+        if not os.path.exists(self.knowledge_base_folder):
+            print(f"⚠️  Directory '{self.knowledge_base_folder}' not found")
             return
 
-        for filename in os.listdir(self.docs_folder):
+        for filename in os.listdir(self.knowledge_base_folder):
             if filename.endswith('.txt'):
-                with open(os.path.join(self.docs_folder, filename), 'r', encoding='utf-8') as f:
+                with open(os.path.join(self.knowledge_base_folder, filename), 'r', encoding='utf-8') as f:
                     content = f.read()
                     self.documents.append({
                         'id': filename.replace('.txt', ''),
@@ -60,27 +62,46 @@ class FictionalCorpusValidator:
 
     def analyze_term_usage(self):
         """Анализирует использование вымышленных терминов"""
-        term_mappings = self.terms_map.get('term_mappings', {})
+        # Получаем термины из terms_map.json
         all_fictional_terms = []
 
-        # Собираем все вымышленные термины
-        for value in term_mappings.values():
-            if isinstance(value, dict):
-                all_fictional_terms.extend(value.values())
-            elif isinstance(value, str):
-                all_fictional_terms.append(value)
+        # Получаем все вымышленные термины из mapping
+        if 'categories' in self.terms_map:
+            for category, terms_dict in self.terms_map['categories'].items():
+                if isinstance(terms_dict, dict):
+                    all_fictional_terms.extend(terms_dict.values())
+
+        # Также проверяем term_mappings
+        if 'term_mappings' in self.terms_map:
+            term_mappings = self.terms_map['term_mappings']
+            if isinstance(term_mappings, dict):
+                for value in term_mappings.values():
+                    if isinstance(value, str):
+                        all_fictional_terms.append(value)
 
         term_usage = Counter()
 
         for doc in self.documents:
+            content_lower = doc['content'].lower()
             for term in all_fictional_terms:
-                if term in doc['content']:
+                if isinstance(term, str) and term.lower() in content_lower:
                     term_usage[term] += 1
 
-        print("\nTop 10 most used fictional terms:")
-        print("-" * 40)
-        for term, count in term_usage.most_common(10):
-            print(f"  {term:25}: {count:3} occurrences")
+        print(f"\nFound {len(term_usage)} unique fictional terms used")
+        if term_usage:
+            print("Top 10 most used fictional terms:")
+            print("-" * 40)
+            for term, count in term_usage.most_common(10):
+                print(f"  {term:25}: {count:3} occurrences")
+        else:
+            print("⚠️  No fictional terms detected in documents")
+            # Показываем примеры терминов, которые должны быть
+            print("Example terms that should be present:")
+            if 'categories' in self.terms_map:
+                for category in ['characters', 'items']:
+                    if category in self.terms_map['categories']:
+                        terms = list(self.terms_map['categories'][category].values())[:3]
+                        print(f"  {category}: {', '.join(terms)}")
 
         return term_usage
 
@@ -107,6 +128,60 @@ class FictionalCorpusValidator:
 
         return broken_refs
 
+    def check_document_uniqueness(self):
+        """Проверяет уникальность документов"""
+        content_hashes = set()
+        duplicate_count = 0
+
+        for doc in self.documents:
+            # Используем хэш для проверки уникальности
+            content_hash = hash(doc['content'][:1000])  # Первые 1000 символов
+            if content_hash in content_hashes:
+                duplicate_count += 1
+                print(f"  ⚠️  Possible duplicate: {doc['id']}")
+            content_hashes.add(content_hash)
+
+        if duplicate_count == 0:
+            print("✓ All documents appear to be unique")
+            return True
+        else:
+            print(f"⚠️  Found {duplicate_count} possible duplicate documents")
+            return False
+
+    def analyze_document_statistics(self):
+        """Анализирует статистику документов"""
+        print("\nDocument Statistics:")
+        print("-" * 40)
+
+        # Типы документов
+        doc_types = Counter(doc['type'] for doc in self.documents)
+        for doc_type, count in doc_types.items():
+            percentage = (count / len(self.documents)) * 100
+            print(f"  {doc_type:15}: {count:2} documents ({percentage:.1f}%)")
+
+        # Количество слов
+        total_words = sum(len(doc['content'].split()) for doc in self.documents)
+        avg_words = total_words / len(self.documents) if self.documents else 0
+
+        print(f"\n  Total documents: {len(self.documents)}")
+        print(f"  Total words: {total_words:,}")
+        print(f"  Average words per document: {avg_words:.0f}")
+
+        # Проверяем ссылки
+        total_refs = sum(len(re.findall(r'\(see document:|\(refer to:|\(detailed in:|\(cf\.', doc['content'])) for doc in self.documents)
+        avg_refs = total_refs / len(self.documents) if self.documents else 0
+
+        print(f"  Total cross-references: {total_refs}")
+        print(f"  Average references per document: {avg_refs:.2f}")
+
+        return {
+            'total_documents': len(self.documents),
+            'total_words': total_words,
+            'avg_words': avg_words,
+            'total_refs': total_refs,
+            'avg_refs': avg_refs
+        }
+
     def generate_coherence_report(self):
         """Генерирует отчёт о связности корпуса"""
         print("=" * 60)
@@ -120,31 +195,19 @@ class FictionalCorpusValidator:
         # 1. Проверка на оригинальные термины
         original_free = self.check_for_original_terms()
 
-        # 2. Анализ использования терминов
+        # 2. Проверка уникальности
+        uniqueness = self.check_document_uniqueness()
+
+        # 3. Анализ использования терминов
         term_usage = self.analyze_term_usage()
 
-        # 3. Проверка ссылок
+        # 4. Проверка ссылок
         broken_refs = self.check_cross_references()
 
-        # 4. Общая статистика
-        print("\n" + "=" * 60)
-        print("CORPUS STATISTICS")
-        print("-" * 60)
+        # 5. Статистика
+        stats = self.analyze_document_statistics()
 
-        doc_types = Counter(doc['type'] for doc in self.documents)
-        for doc_type, count in doc_types.items():
-            percentage = (count / len(self.documents)) * 100
-            print(f"  {doc_type:15}: {count:2} documents ({percentage:.1f}%)")
-
-        total_refs = sum(len(re.findall(r'\(see document:|\(refer to:|\(detailed in:|\(cf\.', doc['content'])) for doc in self.documents)
-        avg_refs = total_refs / len(self.documents) if self.documents else 0
-
-        print(f"\n  Total documents: {len(self.documents)}")
-        print(f"  Total references: {total_refs}")
-        print(f"  Avg references/doc: {avg_refs:.2f}")
-        print(f"  Unique fictional terms: {len(term_usage)}")
-
-        # 5. Оценка качества
+        # 6. Оценка качества
         print("\n" + "=" * 60)
         print("QUALITY ASSESSMENT")
         print("-" * 60)
@@ -155,6 +218,13 @@ class FictionalCorpusValidator:
             print("✓ Original terms: PASS (2/2)")
         else:
             print("✗ Original terms: FAIL (0/2)")
+
+        if uniqueness:
+            score += 2
+            print("✓ Document uniqueness: PASS (2/2)")
+        else:
+            print(f"✗ Document uniqueness: PARTIAL (1/2)")
+            score += 1
 
         if not broken_refs:
             score += 2
@@ -172,37 +242,64 @@ class FictionalCorpusValidator:
             score += partial_score
             print(f"✗ Term diversity: PARTIAL ({partial_score:.1f}/2)")
 
-        if avg_refs >= 1.0:
+        if stats['avg_refs'] >= 1.0:
             score += 2
             print("✓ Interconnectivity: PASS (2/2)")
         else:
-            partial_score = min(2, avg_refs)
+            partial_score = min(2, stats['avg_refs'])
             score += partial_score
             print(f"✗ Interconnectivity: PARTIAL ({partial_score:.1f}/2)")
 
-        print(f"\n  FINAL SCORE: {score}/8 ({score/8*100:.1f}%)")
+        print(f"\n  FINAL SCORE: {score}/10 ({score/10*100:.1f}%)")
 
-        return {
+        report = {
             'original_free': original_free,
+            'uniqueness': uniqueness,
             'broken_refs': len(broken_refs),
             'unique_terms': len(term_usage),
-            'avg_references': avg_refs,
-            'quality_score': score
+            'total_documents': stats['total_documents'],
+            'avg_references': stats['avg_refs'],
+            'quality_score': score,
+            'quality_percentage': score/10*100
         }
+
+        # Сохраняем отчёт в generated папке
+        report_path = os.path.join(self.generated_folder, "validation_report.json")
+        with open(report_path, 'w', encoding='utf-8') as f:
+            json.dump(report, f, indent=2, ensure_ascii=False)
+
+        print(f"\n✓ Validation report saved to {report_path}")
+
+        return report
 
 def main():
     """Основная функция валидации"""
     print("🔍 Validating Fictional Corpus")
     print("=" * 60)
 
-    validator = FictionalCorpusValidator()
+    validator = FictionalCorpusValidator("knowledge_base", "generated")
     report = validator.generate_coherence_report()
 
-    # Сохраняем отчёт
-    with open('validation_report.json', 'w', encoding='utf-8') as f:
-        json.dump(report, f, indent=2, ensure_ascii=False)
+    # Выводим рекомендации
+    print("\n" + "=" * 60)
+    print("RECOMMENDATIONS")
+    print("=" * 60)
 
-    print("\n✓ Validation report saved to 'validation_report.json'")
+    if report.get('quality_percentage', 0) >= 80:
+        print("✅ Corpus quality is EXCELLENT for RAG testing!")
+        print("   - Documents are unique and fictional")
+        print("   - Good cross-references between documents")
+        print("   - No contamination with original terms")
+    elif report.get('quality_percentage', 0) >= 60:
+        print("⚠️  Corpus quality is ACCEPTABLE for RAG testing")
+        print("   - Some minor issues detected")
+        print("   - Still usable for testing purposes")
+    else:
+        print("❌ Corpus quality needs IMPROVEMENT")
+        print("   - Significant issues detected")
+        print("   - Consider regenerating the corpus")
+
+    print(f"\n📊 Final assessment: {report.get('quality_percentage', 0):.1f}%")
 
 if __name__ == "__main__":
     main()

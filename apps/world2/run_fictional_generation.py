@@ -3,22 +3,33 @@
 import sys
 import os
 import time
+import shutil
 
-# Добавляем текущую директорию в путь Python
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-def run_python_script(script_name):
-    """Запускает Python скрипт напрямую, без subprocess"""
-    try:
-        print(f"  Executing: {script_name}")
+def cleanup_old_folders():
+    """Очищает старые папки перед генерацией"""
+    folders_to_clean = ["knowledge_base", "generated", "fictional_documents"]
 
-        # Динамический импорт и вызов main
+    for folder in folders_to_clean:
+        if os.path.exists(folder):
+            try:
+                shutil.rmtree(folder)
+                print(f"  Cleaned up: {folder}/")
+            except Exception as e:
+                print(f"  Warning: Could not clean {folder}: {e}")
+
+def run_script(script_name):
+    """Запускает Python скрипт"""
+    try:
+        print(f"  Running: {script_name}")
+
         if script_name == "fictional_world_bible.py":
             import fictional_world_bible
             if hasattr(fictional_world_bible, 'main'):
                 fictional_world_bible.main()
             else:
-                print(f"  ❌ Script {script_name} has no main() function")
+                print(f"  ❌ No main() in {script_name}")
                 return False
 
         elif script_name == "fictional_document_generator.py":
@@ -26,16 +37,9 @@ def run_python_script(script_name):
             if hasattr(fictional_document_generator, 'main'):
                 fictional_document_generator.main()
             else:
-                print(f"  ❌ Script {script_name} has no main() function")
+                print(f"  ❌ No main() in {script_name}")
                 return False
 
-        elif script_name == "validate_fictional_corpus.py":
-            import validate_fictional_corpus
-            if hasattr(validate_fictional_corpus, 'main'):
-                validate_fictional_corpus.main()
-            else:
-                print(f"  ❌ Script {script_name} has no main() function")
-                return False
         else:
             print(f"  ❌ Unknown script: {script_name}")
             return False
@@ -43,69 +47,102 @@ def run_python_script(script_name):
         return True
 
     except Exception as e:
-        print(f"  ❌ Error executing {script_name}: {e}")
+        print(f"  ❌ Error: {e}")
         import traceback
         traceback.print_exc()
         return False
 
 def main():
-    print("🎭 Fictional Universe Document Generator")
+    print("🎭 Fictional Universe Generator v2.0")
     print("=" * 60)
-    print("Creating a completely fictional world for RAG testing")
-    print("Based on Asterix structure but with original terms")
+    print("Creating unique documents with new folder structure")
 
-    # Создаём папки
-    output_dir = "fictional_documents"
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
+    # Очищаем старые папки
+    print("\n🧹 Cleaning up old folders...")
+    cleanup_old_folders()
 
     # Шаги генерации
     steps = [
-        ("Building fictional world and term mapping", "fictional_world_bible.py"),
-        ("Generating 50 interconnected documents", "fictional_document_generator.py"),
-        ("Validating corpus quality", "validate_fictional_corpus.py")
+        ("Building fictional world with unique terms", "fictional_world_bible.py"),
+        ("Generating 50 documents with new structure", "fictional_document_generator.py")
     ]
 
     for desc, script in steps:
         print(f"\n📝 {desc}")
         print("-" * 40)
-        success = run_python_script(script)
+        success = run_script(script)
         if success:
             print("  ✅ Success")
         else:
-            print("  ⚠️  Warning: Script had issues")
+            print("  ⚠️  Issues encountered")
         time.sleep(0.5)
 
-    # Итоговая информация
+    # Проверяем результаты
     print("\n" + "=" * 60)
-    print("🎉 GENERATION COMPLETE!")
+    print("RESULTS SUMMARY")
     print("=" * 60)
 
-    # Проверяем созданные файлы
-    generated_files = []
-    for filename in ["fictional_world.json", "terms_map.json", "fictional_index.json",
-                     "generation_stats.json", "validation_report.json"]:
-        if os.path.exists(filename):
-            generated_files.append(filename)
+    # Проверяем папки
+    folders_to_check = [
+        ("knowledge_base", "Knowledge base documents"),
+        ("generated", "Generated metadata and QA pairs")
+    ]
 
-    print(f"\n📁 Generated {len(generated_files)} files:")
-    for file in generated_files:
-        print(f"  {file}")
+    print("\n📁 Generated folders:")
+    for folder, description in folders_to_check:
+        if os.path.exists(folder):
+            if folder == "knowledge_base":
+                files = [f for f in os.listdir(folder) if f.endswith('.txt')]
+                print(f"  ✓ {folder}/ - {len(files)} {description}")
+            elif folder == "generated":
+                files = os.listdir(folder)
+                print(f"  ✓ {folder}/ - {len(files)} files ({description})")
+        else:
+            print(f"  ✗ {folder}/ - MISSING")
 
-    if os.path.exists(output_dir):
-        doc_count = len([f for f in os.listdir(output_dir) if f.endswith('.txt')])
-        print(f"  {output_dir}/ - {doc_count} document files")
+    # Показываем содержимое generated
+    if os.path.exists("generated"):
+        print(f"\n📄 Files in generated/:")
+        for file in sorted(os.listdir("generated")):
+            filepath = os.path.join("generated", file)
+            if os.path.isfile(filepath):
+                size = os.path.getsize(filepath)
+                print(f"  - {file} ({size:,} bytes)")
 
-    print("\n🔍 Key Features:")
-    print("  • All terms are fictional (no Asterix/Roman names)")
-    print("  • Documents have cross-references")
-    print("  • Multiple document types (encyclopedia, journal, etc.)")
-    print("  • Consistent internal logic")
+    # Проверяем уникальность документов
+    if os.path.exists("knowledge_base"):
+        files = [f for f in os.listdir("knowledge_base") if f.endswith('.txt')]
+        if files:
+            # Читаем первые 200 символов из первых 5 файлов
+            contents = []
+            for f in files[:5]:
+                with open(os.path.join("knowledge_base", f), 'r', encoding='utf-8') as file:
+                    contents.append(file.read()[:200])
 
-    print("\n🎯 Perfect for RAG testing because:")
-    print("  • Models have no prior knowledge of this universe")
-    print("  • Can test true understanding vs. memorization")
-    print("  • Cross-document relationships test reasoning")
+            unique_contents = set(contents)
+            if len(unique_contents) == len(contents):
+                print(f"\n✓ Sample documents are unique")
+            else:
+                print(f"\n⚠️  Some sample documents show repetition")
+
+            print(f"\n📊 Document types in knowledge_base/:")
+            doc_types = {}
+            for f in files:
+                doc_type = f.split('_')[0]
+                doc_types[doc_type] = doc_types.get(doc_type, 0) + 1
+
+            for doc_type, count in doc_types.items():
+                print(f"  {doc_type}: {count} documents")
+
+    print("\n🔍 New folder structure:")
+    print("  knowledge_base/ - 50 documents for RAG testing")
+    print("  generated/ - All metadata, indices, and QA pairs")
+
+    print("\n🎯 QA Pair types available:")
+    if os.path.exists("generated"):
+        qa_files = [f for f in os.listdir("generated") if 'qa' in f.lower()]
+        for qa_file in qa_files:
+            print(f"  - {qa_file}")
 
 if __name__ == "__main__":
     main()

@@ -1,0 +1,59 @@
+---
+title: Encyclopedia: Properties of Starlight Tonic
+author: Lorekeeper Archives
+publication_date: 48 AM (After Moonfall)
+keywords:
+  - Veridia
+  - fictional
+  - elixir
+doc_id: ENCY_010
+doc_type: encyclopedia
+universe: Chronicles of Veridia
+generated_date: 2026-01-24
+contains_fictional_terms: True
+content_hash: ec49e907
+---
+
+# Properties of Crystal Essence
+
+The Crystal Essence is a legendary concoction prepared exclusively by the Lorekeeper Syloos. Its primary ingredient is crystalized dew from dream-fed plants, gathered using a crystal blade.
+
+## Effects and Properties
+
+Primary effects include accelerated reflexes and perception. Secondary benefits may involve enhanced healing depending on the brew.
+
+Chronic exposure, as documented in the case of Quenix, leads to permanent physical enhancement but requires frequent nourishment.
+
+## Historical Significance
+
+The formula originated during the First Moonfall and has been refined over 23 generations (as referenced in DECR_001) (historical context in MYTH_003). According to Syloos's research, the formula varies by season.
+
+## Modern Usage
+
+Taraix employs it strategically during encounters with Imperial forces (related discussion in JOUR_009) (historical context in REPO_006). Proper dosage is critical - 14 drops for basic enhancement, up to a full vial for combat situations.
+
+Storage requires obsidian containers to maintain potency beyond 39 days.
+
+## Related Documents
+- ENCY_007
+  *Covers related aspects of properties of starlight tonic*
+- ENCY_005
+  *Covers related aspects of properties of starlight tonic*
+- ENCY_009
+  *Covers related aspects of properties of starlight tonic*
+- ENCY_003
+  *Covers related aspects of properties of starlight tonic*
+- ENCY_002
+  *Covers related aspects of properties of starlight tonic*
+
+**Related to military:** See REPO_002 for complementary information.
+
+**Related to military:** See ENCY_001 for complementary information.
+
+**Related to lore:** See ENCY_015 for complementary information.
+
+**Related to lore:** See ENCY_007 for complementary information.
+
+**Related to magic:** See ENCY_006 for complementary information.
+
+**Related to magic:** See ENCY_015 for complementary information.

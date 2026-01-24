@@ -3,7 +3,7 @@
   <component name="Black">
     <option name="sdkName" value="Python 3.14 (swa-21_generate_rag_test_data)" />
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.14 (swa-21_generate_rag_test_data)" project-jdk-type="Python SDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_25" project-jdk-name="Python 3.12 (untitled)" project-jdk-type="Python SDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
   <component name="ProjectType">
